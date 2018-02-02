@@ -16,11 +16,12 @@
   <div id="app">
     <div class="container">
       <ul class="nav nav-pills">
-                     <!-- link to nearby shop 
-      <li>  <router-link class="nav-item nav-link active"  to="/Shops">NearBy</router-link></li>
-                      link to preferred 
+                     <!-- link to nearby shop -->
 
-        <li><router-link  class="nav-item nav-link " to="/Pshop">preferred shops</router-link></li>-->
+        <li>  <router-link class="nav-item nav-link active"  to="/Shops">NearBy</router-link></li>
+                     <!-- link to preferred -->
+
+        <li><router-link  class="nav-item nav-link " to="/Pshop">preferred shops</router-link></li>
         <li>
           <a href="{{ route('logout') }}"onclick="event.preventDefault();
           document.getElementById('logout-form').submit();">

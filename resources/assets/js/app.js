@@ -3,17 +3,17 @@ import Vue from 'vue';
 
 Vue.use(VueRouter);
 import VueAxios from 'vue-axios';
-/**import ShopComponent from "./components/ShopComponent.vue";// import components:
+import ShopComponent from "./components/ShopComponent.vue";// import components:
 
 
-import Pshop from "./components/PshopsComponent.vue";**/
+import Pshop from "./components/PshopsComponent.vue";
 
 
 
 import axios from 'axios';
 Vue.use(VueAxios, axios);
 Vue.component('paginate', require('vuejs-paginate'));
-/**
+
 Vue.component('shop-component', require('./components/ShopComponent.vue'));
 // deslare child component
 
@@ -73,7 +73,6 @@ template: `  <div class="card" v-show="IsVisible" >
 });
 
 
-
 const router = new VueRouter({
   // declare routes
 
@@ -91,4 +90,3 @@ const app = new Vue({
   router
 });
 
-**/
