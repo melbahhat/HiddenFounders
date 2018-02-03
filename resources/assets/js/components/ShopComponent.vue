@@ -70,16 +70,18 @@ methods: {
 like(id){
  
 
- console.log(user);
-  console.log(id);
+ this.axios.post("http://localhost:8000/api/Preshop?api_token="+token,{
+
+user_id:user,
+shop_id:id}).then((response) => {
+
+window.location.reload();
 
 
 
-
-
-
-
-},
+})
+.catch(function (error) {
+console.log(error.response)  });
 
 
 
@@ -90,5 +92,6 @@ like(id){
 
 }
 
+}
 
 </script>

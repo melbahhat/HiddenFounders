@@ -17,8 +17,7 @@ class PreShopController extends Controller
      */
     public function index()
     {
-               $query=DB::table('shop_user')->get();
-               return $query;
+              
     }
 
     /**
@@ -45,8 +44,8 @@ class PreShopController extends Controller
 
 
    $query= DB::table('shop_user')->insert([
-    'shop_id' => $user_id,
-    'user_id' => $shop_id, //pass your userID here
+    'shop_id' => $shop_id,
+    'user_id' => $user_id, //pass your userID here
 ]);
  
 
