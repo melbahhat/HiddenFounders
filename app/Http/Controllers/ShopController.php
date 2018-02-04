@@ -14,21 +14,21 @@ class ShopController extends Controller
      */
     public function index()
     {
- \ JavaScript::put([
-         'token' => Auth::user()->api_token,
-         'user'=> Auth::user()->id
-        
-    ]);
+       \ JavaScript::put([
+           'token' => Auth::user()->api_token,
+           'user'=> Auth::user()->id
+           
+       ]);
 
 
-          
+       
 
 
-return view("layouts.master");
-        
+       return view("layouts.master");
+       
 
 
-            }
+   }
 
     /**
      * Show the form for creating a new resource.

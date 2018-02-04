@@ -1,3 +1,6 @@
+
+![alt text](https://github.com/melbahhat/HiddenFounders/blob/master/resources/assets/js/ezgif.com-crop.gif)
+
 ## Read me for the Nearby application that allowed to display all the nearby shop 
 
 

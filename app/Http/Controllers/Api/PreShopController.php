@@ -21,12 +21,15 @@ class PreShopController extends Controller
     public function index()
     {
 
+/**
+     select all shops that belong to the authenticated user
+     */
 
         $userId=Auth::guard('api')->id();
 
         $shops = User::find($userId)->shops->toArray();
+     return response()->json( $shops, 200);
 
-        return $shops;
     }
     /**
      * Show the form for creating a new resource.
@@ -47,22 +50,24 @@ class PreShopController extends Controller
     public function store(Request $request)
     {
 
+/**
+     insert  shop which has been selected
+     */
+     $user_id = $request->input('user_id');
+     $shop_id= $request->input('shop_id');
 
-       $user_id = $request->input('user_id');
-       $shop_id= $request->input('shop_id');
 
 
-
-       $query= DB::table('shop_user')->insert([
+     $query= DB::table('shop_user')->insert([
         'shop_id' => $shop_id,
     'user_id' => $user_id, //pass your userID here
 ]);
 
 
-       return response()->json( $query, 201);
+     return response()->json( $query, 201);
 
 
-   }
+ }
 
     /**
      * Display the specified resource.
@@ -107,12 +112,12 @@ class PreShopController extends Controller
     public function destroy($id)
     {
 
-       DB::table('shop_user')->where('shop_id', '=', $id)->delete();
-       return 'dsfuiu';
+     DB::table('shop_user')->where('shop_id', '=', $id)->delete();
+     return response()->json( "it has been deleted", 204);
 
 
- 
-    }
+
+ }
 
 
 

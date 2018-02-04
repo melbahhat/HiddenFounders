@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Shop;
- use Illuminate\Support\Facades\DB as DB;
-  use Auth;
+use Illuminate\Support\Facades\DB as DB;
+use Auth;
 use Response;
 
 
@@ -22,47 +22,52 @@ class ShopController extends Controller
      */
     public function index()
     {
-       $user =Auth::guard('api')->id();
-    
-             
-
-$shop=Shop::all();
-foreach($shop as $s)
-{
-$lat=$s->lat;
-$lng=$s->lng;
-$id=$s->id;
 
 
-    $radius=10;
-            
-
-            $s=DB::select('SELECT  name,city,picture,email,lat,lng ,type ,( 6371 * acos( cos( radians(' .$lat. ') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('.$lng.') ) + sin( radians('.$lat.') ) * sin( radians( lat ) ) ) )  AS distance , shops.id
-                    FROM shops LEFT JOIN  shop_user ON shops.id=shop_user.shop_id AND shop_user.user_id ='.$user.' where(shop_user.shop_id is NULL) HAVING distance <10  ORDER BY distance limit 15');
-               
+ /**
+    calculate the distance using lat and lng and select all the shops that doesn't belong   to the preferred shops list for the authenticated user
+     */
+     $user =Auth::guard('api')->id();
 
 
 
-                                    
+     $shop=Shop::all();
+     foreach($shop as $s)
+     {
+        $lat=$s->lat;
+        $lng=$s->lng;
+        $id=$s->id;
 
 
- return $s;
+        $radius=10;
+
+
+        $s=DB::select('SELECT  name,city,picture,email,lat,lng ,type ,( 6371 * acos( cos( radians(' .$lat. ') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('.$lng.') ) + sin( radians('.$lat.') ) * sin( radians( lat ) ) ) )  AS distance , shops.id
+            FROM shops LEFT JOIN  shop_user ON shops.id=shop_user.shop_id AND shop_user.user_id ='.$user.' where(shop_user.shop_id is NULL) HAVING distance <10  ORDER BY distance limit 15');
+
+
+
+
+
+
+
+        return $s;
+    }
+
+
+
+
 }
 
 
 
 
- }
-
-   
-         
-  
-    
 
 
 
 
-    
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -81,7 +86,7 @@ $id=$s->id;
      */
     public function store(Request $request)
     {
-          
+
     }
 
     /**
