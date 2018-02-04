@@ -1495,6 +1495,28 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('child', {
 
 });
 
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.component('preferred', {
+  props: ["name", "picture", "id"],
+
+  data: function data() {
+
+    return {
+      IsVisible: true
+
+    };
+  },
+
+  methods: {
+    supp: function supp(id) {
+
+      this.$emit('supp', id);
+    }
+  },
+
+  template: '  <div class="card" v-show="IsVisible" >\n<h4 class="card-title"> {{name}}</h4>\n<img class="card-img-top" :src="picture" alt="Card image cap">\n<div class="card-block">\n<h4 class="card-title"></h4>\n\n\n<center> <button class = "btn btn-danger"  id="deletesuccess" @click="supp(id)"  >delete </button>\n\n\n\n</center>\n\n\n</div>\n</div>'
+
+});
+
 var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
   // declare routes
 
@@ -15583,7 +15605,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   mounted: function mounted() {
     var _this = this;
 
-    this.axios.get("http://localhost:8000/api/Preshops").then(function (response) {
+    this.axios.get("http://localhost:8000/api/Preshop?api_token=" + token).then(function (response) {
 
       _this.shops = response.data;
     });
@@ -15591,9 +15613,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
   methods: {
-    like: function like(id) {
+    supp: function supp(id) {
 
-      console.log(id);
+      this.axios.delete("http://localhost:8000/api/Preshop/" + id + "?api_token=" + token).then(function (response) {
+
+        window.location.reload();
+      }).catch(function (error) {
+        console.log(error.response);
+      });
     }
   }
 
@@ -15614,7 +15641,16 @@ var render = function() {
       _vm._l(_vm.shops, function(shop) {
         return _c(
           "div",
-          [_c("child", { attrs: { name: shop.name, picture: shop.picture } })],
+          [
+            _c("preferred", {
+              attrs: { name: shop.name, picture: shop.picture },
+              on: {
+                supp: function($event) {
+                  _vm.supp(shop.id)
+                }
+              }
+            })
+          ],
           1
         )
       }),

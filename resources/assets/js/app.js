@@ -73,6 +73,54 @@ template: `  <div class="card" v-show="IsVisible" >
 });
 
 
+Vue.component('preferred', {
+ props:["name","picture","id"],
+
+ data(){
+
+
+  return {
+    IsVisible:true
+
+
+
+  };
+ },
+ methods:{
+
+  supp(id){
+
+
+    this.$emit('supp',id)
+  },
+
+  
+
+   
+
+},
+
+
+template: `  <div class="card" v-show="IsVisible" >
+<h4 class="card-title"> {{name}}</h4>
+<img class="card-img-top" :src="picture" alt="Card image cap">
+<div class="card-block">
+<h4 class="card-title"></h4>
+
+
+<center> <button class = "btn btn-danger"  id="deletesuccess" @click="supp(id)"  >delete </button>
+
+
+
+</center>
+
+
+</div>
+</div>`
+
+});
+
+
 const router = new VueRouter({
   // declare routes
 

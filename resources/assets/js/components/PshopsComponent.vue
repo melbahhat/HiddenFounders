@@ -28,7 +28,7 @@ box-shadow: 0 1px 3px 0 #d4d4d5,0 0 0 1px #d4d4d5;
 
 <div v-for="shop in shops">
 
-<child :name="shop.name" :picture="shop.picture" ></child>
+<preferred :name="shop.name" :picture="shop.picture" @supp="supp(shop.id)"></preferred>
 
 
 
@@ -70,7 +70,7 @@ picture:''
 
 mounted() {
 
-this.axios.get("http://localhost:8000/api/Preshops").then((response) => {
+this.axios.get("http://localhost:8000/api/Preshop?api_token="+token).then((response) => {
 
 this.shops = response.data;
 
@@ -84,11 +84,25 @@ methods:{
 
 
 
-like(id){
+supp(id){
+
+
+this.axios.delete("http://localhost:8000/api/Preshop/"+id+"?api_token="+token).then((response) => {
+
+window.location.reload();
 
 
 
-console.log(id)   }
+})
+.catch(function (error) {
+console.log(error.response)  });
+
+
+
+
+
+
+ }
 
 
 }
